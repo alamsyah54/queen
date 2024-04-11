@@ -1,7 +1,8 @@
+import { HeroParallax } from "@/components/ui/HeroParallax"
 export default function Home() {
     return (
-        <main className='flex min-h-screen flex-col items-center justify-between p-24'>
-            asdadsasd
-        </main>
+        <div className='flex justify-center'>
+            <HeroParallax />
+        </div>
     )
 }

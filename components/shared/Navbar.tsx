@@ -12,25 +12,25 @@ import {
     DropdownMenuContent,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { FiArrowUpCircle } from "react-icons/fi"
 import Image from "next/image"
+import { MdOutlineSell } from "react-icons/md"
+import { MdSell } from "react-icons/md"
+import { GoHome } from "react-icons/go"
+import { GoHomeFill } from "react-icons/go"
 
 const Navbar = () => {
     const navButtons = [
         {
             title: "Home",
             url: "/",
-            LineColor: "bg-fuchsia-500",
+            filledIcons: <GoHomeFill />,
+            outlineIcons: <GoHome />,
         },
         {
             title: "Products",
             url: "/products",
-            LineColor: "bg-purple-500",
-        },
-        {
-            title: "Accounts",
-            url: "/accounts",
-            LineColor: "bg-sky-500",
+            filledIcons: <MdSell />,
+            outlineIcons: <MdOutlineSell />,
         },
     ]
 
@@ -60,25 +60,22 @@ const Navbar = () => {
     }
 
     return (
-        <nav className='w-full duration-500 z-50'>
-            <div className='backdrop-blur-sm dark:bg-dark-600/30 bg-gray-100/30 rounded-[20px] py-2 flex px-6 justify-between duration-700 items-center shadow-lg shadow-black/25 dark:shadow-black/70'>
-                <Link
-                    href='/'
-                    className='max-md:p-2 flex items-center gap-3 select-none'
-                >
+        <nav className='w-full z-50'>
+            <div className='backdrop-blur-sm dark:bg-dark-600 bg-gray-100/30 rounded-[20px] py-2 flex px-6 justify-between items-center shadow-lg shadow-black/25 dark:shadow-black/70'>
+                <Link href='/' className='flex items-center gap-3 select-none'>
                     <Image
                         src='/icons/QueenCrownLight.webp'
                         alt='Queen Of Nature'
                         width={50}
                         height={50}
-                        className='py-5 hidden dark:block'
+                        className='py-2 hidden dark:block'
                     />
                     <Image
                         src='/icons/QueenCrown.webp'
                         alt='Queen Of Nature'
                         width={50}
                         height={50}
-                        className='py-5 dark:hidden'
+                        className='py-2 dark:hidden'
                     />
                     <span className='md:text-2xl text-xl'>Queen Of Nature</span>
                 </Link>
@@ -93,10 +90,13 @@ const Navbar = () => {
                                         path === nav.url
                                             ? "font-black transition-transform duration-700"
                                             : ""
-                                    } dark:text-gray-400 flex-col-reverse py-2 md:text-sm font-medium group`}
+                                    } dark:text-gray-400 flex items-center gap-1 justify-center py-2 md:text-sm font-medium group`}
                                 >
+                                    {path === nav.url
+                                        ? nav.filledIcons
+                                        : nav.outlineIcons}
                                     {nav.title}
-                                    <div
+                                    {/* <div
                                         className={`${
                                             nav.LineColor
                                         } rounded-full w-full h-1 flex ${
@@ -104,7 +104,7 @@ const Navbar = () => {
                                                 ? "opacity-100"
                                                 : "opacity-0 group-hover:opacity-100"
                                         }`}
-                                    />
+                                    /> */}
                                 </Link>
                             ))}
                             <DropdownMenu>
